@@ -1,9 +1,11 @@
 package gigio.java.searchable;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 public class Ordering {
 	public final static String ASC = "ASC";
