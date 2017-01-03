@@ -21,6 +21,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 @Data
 @Builder
@@ -30,7 +31,9 @@ public class Searchable<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Singular
 	private List<Term> terms;
+	@Singular
 	private List<Ordering> orderings;
 	private int pageNumber;
 	private int pageSize;
@@ -67,6 +70,7 @@ public class Searchable<T> implements Serializable {
 					String value = searchTerm.getValue();
 					value = value == null ? null : value.trim();
 					List<String> listValue = searchTerm.getListValue() == null ? null : searchTerm.getListValue();
+					
 					if(normalize) value = Normalizer.normalize(value, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 
 					if(searchTerm.getTerm() != null) {
